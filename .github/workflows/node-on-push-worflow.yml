@@ -2,7 +2,7 @@ name: On push workflow
 
 on:
   workflow_run:
-    workflows: ["On push workflow"]
+    workflows: ["On push"]
     types:
       - completed
 
