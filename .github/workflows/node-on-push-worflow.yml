@@ -1,0 +1,25 @@
+name: On push workflow
+
+on:
+  workflow_run:
+    workflows: ["On push workflow"]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hmarr/debug-action@v3
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - run: node ./test.js
+
